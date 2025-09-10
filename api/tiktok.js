@@ -6,27 +6,19 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiUrl = `https://tiktok-down.apis-bj-devs.workers.dev/?url=${encodeURIComponent(
-      url
-    )}`;
+    const apiUrl = `https://www.tikwm.com/api/?url=${encodeURIComponent(url)}`;
     const response = await fetch(apiUrl);
+    const data = await response.json();
 
-    const text = await response.text();
-
-    // ✅ Try JSON parse
-    try {
-      const data = JSON.parse(text);
-      return res.status(200).json(data);
-    } catch {
-      // ❌ Not JSON → must be HTML error page
-      return res.status(502).json({
-        error: "Invalid API response (HTML received)",
-        preview: text.slice(0, 200), // show first 200 chars for debugging
+    if (data && data.data) {
+      return res.status(200).json({
+        video_no_watermark: data.data.play,
+        video_watermark: data.data.wmplay
       });
+    } else {
+      return res.status(404).json({ error: "Video link not found in API response", raw: data });
     }
   } catch (err) {
-    return res
-      .status(500)
-      .json({ error: "Failed to fetch video", details: err.message });
+    return res.status(500).json({ error: "Failed to fetch video", details: err.message });
   }
-  }
+}

@@ -3,93 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TikTok Downloader - VIP Matrix Style</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>HJH TikTok Video Downloader</title>
   <style>
-    :root{--bg:#050505;--neon:#ff0050;--neon-2:#ff2d75;--panel:#08110d;--glass:rgba(6,12,6,0.65);--gold:#ffd700;}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;font-family:'Poppins',system-ui,Arial;
-      background: linear-gradient(160deg, #000 0%, #0d0d0d 100%);color:#ffe0f0;overflow:auto;}
-    .matrix {position:fixed;inset:0;z-index:0;pointer-events:none;}
-    .matrix canvas{width:100%;height:100%;display:block}
-    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;z-index:1;position:relative;}
-    .card{width:380px;max-width:92%;background:linear-gradient(180deg, rgba(30,10,20,0.5), rgba(10,4,7,0.7));
-      border-radius:20px;padding:30px 24px 26px;box-shadow:0 12px 40px rgba(255,0,80,0.2), 0 0 50px rgba(255,45,117,0.3) inset;
-      border:1px solid rgba(255,45,117,0.15);position:relative;backdrop-filter: blur(12px) saturate(180%);}
-    .avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 14px;overflow:hidden;border:3px solid rgba(255,45,117,0.3);display:flex;align-items:center;justify-content:center;
-      box-shadow:0 0 25px rgba(255,45,117,0.25);}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-    h1{font-size:20px;text-align:center;margin:0;color:var(--neon);text-shadow:0 0 12px rgba(255,45,117,0.35);}
-    .subtitle{display:block;text-align:center;font-size:13px;margin-top:8px;color:#ff8fb7;letter-spacing:1px;text-transform:uppercase;font-weight:600}
-    label{display:block;font-size:12px;margin:10px 0 6px;color:#ff8fb7}
-    .input{width:100%;padding:12px 14px;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
-      border:1px solid rgba(255,45,117,0.25);color:var(--neon-2);font-size:14px;outline:none;}
-    .btn{display:block;width:100%;padding:12px;border-radius:10px;border:none;margin-top:14px;
-      background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#fff;font-weight:700;cursor:pointer;
-      box-shadow:0 6px 20px rgba(255,45,117,0.25);transition:all .25s;}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,45,117,0.35)}
-    .btn.secondary{background:transparent;border:1px solid rgba(255,45,117,0.5);color:var(--neon)}
-    .video-box{margin-top:16px;display:none;text-align:center}
-    video{width:100%;border-radius:12px;box-shadow:0 6px 20px rgba(255,0,80,0.2)}
-    .footer{font-size:12px;text-align:center;color:var(--gold);margin-top:14px;font-weight:600;letter-spacing:1px;text-shadow:0 0 8px rgba(255,215,0,0.25)}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #0b0015;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Card */
+    .card {
+      margin: 60px auto;
+      padding: 25px;
+      width: 75%;
+      max-width: 400px;
+      background: #0d001a;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00cfff; /* sirf blue glow, white hataya */
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 15px auto;
+      overflow: hidden;
+      border: 2px solid #00cfff;
+      box-shadow: 0 0 15px #00cfff;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0;
+      margin-bottom: 10px;
+      color: #00cfff;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #00cfff;
+    }
+    .input {
+      width: 85%;
+      max-width: 300px;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #00cfff;
+      border-radius: 8px;
+      outline: none;
+      text-align: center;
+      font-size: 16px;
+      background: #000;
+      color: #fff;
+    }
+
+    /* Buttons */
+    .btn {
+      display: block;
+      width: 85%;
+      max-width: 300px;
+      margin: 10px auto;
+      padding: 12px;
+      background: #00cfff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #009fbb;
+    }
+    .btn.secondary {
+      background: transparent;
+      border: 2px solid #00cfff;
+      color: #00cfff;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 15px;
+      box-shadow: 0 0 15px #00cfff;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 13px;
+      color: gray;
+    }
+    .footer span {
+      color: #00cfff;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <div class="matrix"><canvas id="matrixCanvas"></canvas></div>
-  <div class="wrap">
-    <div class="card">
-      <div class="avatar"><img src="https://i.postimg.cc/Dzrr0fbd/stripped-Snapchat-931726747.jpg" alt="avatar"></div>
-      <h1>TikTok Video Downloader</h1>
-      <span class="subtitle">VIP Edition - Mr Hamza Jutt</span>
+  <div class="card">
+    <div class="avatar">
+      <img src="https://i.postimg.cc/dVWsQpKw/IMG-20250913-WA0039.jpg" alt="avatar">
+    </div>
+    <h1>𝑯𝑱𝑯 𝑻𝒊𝒌𝑻𝒐𝒌 𝑽𝒊𝒅𝒆𝒐 𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅𝒆𝒓</h1>
+    <span class="subtitle">▄︻┻═┳一</span>
 
-      <label for="urlInput">Paste TikTok URL</label>
-      <input id="urlInput" class="input" placeholder="https://www.tiktok.com/..." />
+    <label for="urlInput">𝑷𝒂𝒔𝒕𝒆 𝑻𝒊𝒌𝑻𝒐𝒌 𝑼𝑹𝑳</label>
+    <input id="urlInput" class="input" placeholder="https://www.tiktok.com/..." />
 
-      <button id="fetchBtn" class="btn">🎬 Fetch Video</button>
-      <a id="downloadNoWM" class="btn secondary" style="display:none" href="#" download>⬇ Download (No Watermark)</a>
-      <a id="downloadWM" class="btn secondary" style="display:none" href="#" download>⬇ Download (With Watermark)</a>
+    <button id="fetchBtn" class="btn">🎬 Fetch Video</button>
+    <a id="downloadNoWM" class="btn secondary" style="display:none" href="#" download>⬇ Download (No Watermark)</a>
+    <a id="downloadWM" class="btn secondary" style="display:none" href="#" download>⬇ Download (With Watermark)</a>
 
-      <div id="videoBox" class="video-box">
-        <video id="videoTag" controls></video>
-      </div>
+    <div id="videoBox" style="display:none">
+      <video id="videoTag" controls></video>
+    </div>
 
-      <div class="footer">⚡ VIP Design by <strong>Mr Hamza Jutt</strong></div>
+    <div class="footer">
+      <span>Developed By <span> ▄︻┻═┳一𝐇𝐉𝐇 𝐇𝐀𝐂𝐊𝐄𝐑🔥</span></span>
     </div>
   </div>
 
   <script>
-    // Matrix rain effect
-    (function(){
-      const canvas=document.getElementById('matrixCanvas');
-      const ctx=canvas.getContext('2d');
-      let width,height,cols,yPositions;
-      const letters='01';
-      function setup(){
-        width=canvas.width=window.innerWidth;
-        height=canvas.height=window.innerHeight;
-        const fontSize=16;
-        cols=Math.floor(width/fontSize);
-        yPositions=Array(cols).fill(0).map(()=>Math.floor(Math.random()*height));
-        ctx.font=fontSize+'px monospace';
-      }
-      function frame(){
-        ctx.fillStyle='rgba(0,0,0,0.06)';
-        ctx.fillRect(0,0,width,height);
-        ctx.fillStyle='rgba(255,45,117,0.35)';
-        for(let i=0;i<cols;i++){
-          const text=letters.charAt(Math.floor(Math.random()*letters.length));
-          const x=i*16;
-          ctx.fillText(text,x,yPositions[i]);
-          if(yPositions[i]>height+Math.random()*1000) yPositions[i]=0;
-          else yPositions[i]+=16;
-        }
-        requestAnimationFrame(frame);
-      }
-      window.addEventListener('resize',setup);
-      setup();frame();
-    })();
-
-    // Downloader logic
     const fetchBtn=document.getElementById("fetchBtn");
     const urlInput=document.getElementById("urlInput");
     const videoBox=document.getElementById("videoBox");
@@ -109,7 +158,6 @@
         const apiUrl=`/api/tiktok?url=${encodeURIComponent(url)}`;
         const res=await fetch(apiUrl);
         const data=await res.json();
-        console.log("API Response:",data);
 
         if(data && (data.video_no_watermark || data.video_watermark)){
           if(data.video_no_watermark){
@@ -134,4 +182,4 @@
     });
   </script>
 </body>
-        </html>
+  </html>
